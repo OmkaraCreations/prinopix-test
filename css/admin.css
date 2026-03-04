@@ -1,0 +1,641 @@
+/* =====================================================
+   ADMIN LAYOUT
+===================================================== */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-content {
+  flex: 1;
+  padding: 5vh 5%;
+}
+
+.admin-section {
+  display: none;
+  
+}
+
+.admin-section.active {
+  display: block;
+  margin-bottom: 50px;
+}
+
+.admin-section.active h2{
+  margin-bottom: 20px;
+}
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.admin-sidebar {
+  width: 220px;
+  min-width: 220px;
+  padding: 40px 0px;
+  background: var(--glass-nav);
+  backdrop-filter: blur(25px);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  /*justify-content: start;*/
+  position: relative;
+  transition: width 0.6s ease,  min-width 0.6s ease;
+  overflow: hidden; 
+  white-space: nowrap; 
+  height: 100vh; 
+}
+
+.sidebar-top{
+  margin-bottom: 20px;
+}
+.sidebar-logo {
+  height: 30px;
+  padding: 0px 20px;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;  
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s;
+  gap: 10px;
+  padding: 10px 20px;
+}
+
+
+.sidebar-item:hover{
+  background: var(--glass-bg);
+}
+.sidebar-item.active {
+  color: var(--primary);
+}
+
+.sidebar-item span {
+  /* Ensure the text itself has a transition so it doesn't snap */
+  transition: opacity 0.1s ease, width 0.8s ease;
+  opacity: 1;
+}
+
+.sidebar-bottom {
+  margin-top: auto; /* This pushes the button to the absolute bottom */
+  padding: 20px;
+  transition: width 0.6s ease,  min-width 0.6s ease;
+  /*display: flex;
+  justify-content: center;*/    /* Optional: keep it from touching the very edge */
+}
+
+
+/* Toggle Button */
+.sidebar-toggle {
+  position: absolute;
+  right:30px;
+  width: 32px;
+  height: 32px;
+  color: var(--light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 10;
+}
+
+.sidebar-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Collapsed State */
+.admin-sidebar.collapsed {
+  width: 80px;
+  min-width: 80px;
+  
+}
+
+.admin-sidebar.collapsed .sidebar-item {
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 20px;
+}
+
+.admin-sidebar.collapsed .sidebar-item span {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  
+}
+
+.admin-sidebar.collapsed .sidebar-bottom {
+  display: none;
+}
+
+/* =====================================================
+   GRID / CARDS
+===================================================== */
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.admin-card {
+  padding: 30px;
+  text-align: center;
+  border-radius: var(--radius-md);
+  background: var(--glass-nav);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.admin-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+/* =====================================================
+   LOGS LAYOUT
+===================================================== */
+.logs-layout {
+  display: flex;
+  gap: 30px;
+  height: 75vh;
+}
+
+/* EVENT PANEL */
+
+.event-panel {
+  min-width: 220px;
+  padding: 15px;
+  border-radius: var(--radius-md);
+  background: var(--glass-nav);
+  display: flex;
+  flex-direction: column;
+}
+
+.event-panel-header input {
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--glass-bg);
+  background: var(--glass-bg);
+  color: var(--light);
+}
+
+.event-list {
+  flex: 1;
+  margin-top: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.event-item {
+  padding: 8px 12px;
+  border-radius: var(--radius-xs);
+  background: var(--glass-bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.event-item:hover{
+  background: var(--glass-dark);
+}
+.event-item.active {
+  background: var(--primary);
+}
+
+.event-name {
+  font-size: var(--fs-normal);
+}
+
+.event-menu {
+  cursor: pointer;
+  padding: 5px;
+}
+
+.event-panel-footer {
+  margin-top: 15px;
+}
+
+/* LOG PANEL */
+.log-panel {
+  flex: 1;
+  min-width: 0;
+  padding: 20px;
+  border-radius: var(--radius-md);
+  background: var(--glass-nav);
+  display: flex;
+  flex-direction: column;
+}
+
+.log-toolbar {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.log-toolbar input {
+  padding: 8px 10px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--glass-bg);
+  background: var(--glass-bg);
+  color: var(--light);
+  height: 40px;
+}
+
+/* 1st item */
+.log-toolbar > :nth-child(1) {
+  flex: 0 0 18%;
+}
+/* 2nd item */
+.log-toolbar > :nth-child(2) {
+  flex: 0 0 18%;
+}
+/* 3rd item */
+.log-toolbar > :nth-child(3) {
+  flex: 0 0 38%;
+}
+/* 4th item */
+.log-toolbar > :nth-child(4) {
+  flex: 0 0 18%;
+}
+
+
+/* Custom Filter Dropdown*/
+.select-trigger {
+  width: 100%;
+  height: 40px;
+}
+
+
+.log-table-wrapper {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+
+.log-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: var(--fs-normal);
+}
+
+.log-table thead {
+  position: sticky;
+  top: 0;
+  background: var(--dark);
+  z-index: 5;
+}
+
+.log-table th, .log-table td {
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border:1px solid var(--glass-dark);
+  padding: 4px 10px;
+}
+
+.log-table td {
+  cursor: pointer;
+}
+
+.log-table td.expanded {
+  white-space: normal;
+  word-break: break-word;
+}
+
+.resizer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  cursor: col-resize;
+  user-select: none;
+}
+
+.resizer:hover {
+  background: var(--primary);
+}
+
+.log-table tr:hover {
+  background: var(--glass-bg);
+}
+
+
+
+
+
+/* =====================================================
+  LOADER ANIMATION
+===================================================== */
+.admin-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  background: var(--glass-black);
+  backdrop-filter: blur(15px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.admin-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-logo {
+  width: 55px;
+  height: 55px;
+  z-index: 2;
+}
+
+.loader-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4px solid transparent;
+  border-top: 4px solid var(--primary);
+  border-right: 4px solid var(--primary);
+  animation: spin 1s linear infinite;
+}
+
+.loader-ring::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(239,89,41,0.3);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* =====================================================
+   CUSTOM MODAL FORM
+===================================================== */
+.custom-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.3s ease;
+}
+
+.custom-modal.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.custom-modal-content {
+  width: 400px;
+  max-width: 90%;
+  padding: 35px;
+
+  text-align: center;
+  border-radius: var(--radius-md);
+  background: var(--glass-nav);
+  box-shadow: var(--shadow-lg);
+
+  animation: modalPop 0.3s ease;
+}
+
+.custom-modal-content h3 {
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+.custom-modal-content input {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 25px;
+
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--glass-bg);
+  background: var(--glass-bg);
+  color: var(--light);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+@keyframes modalPop {
+  from { transform: scale(0.9); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* =====================================================
+   CUSTOM SCROLLBAR
+===================================================== */
+.event-panel-header input:focus,
+.log-toolbar input:focus,
+.custom-modal-content input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--shadow-lg);
+}
+
+
+
+.log-table-wrapper::-webkit-scrollbar,
+.event-list::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.log-table-wrapper::-webkit-scrollbar-track,
+.event-list::-webkit-scrollbar-track {
+  background: var(--glass-dark);
+  border-radius: 20px;
+}
+
+.log-table-wrapper::-webkit-scrollbar-thumb,
+.event-list::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--primary),
+    var(--primary-light)
+  );
+  border-radius: 20px;
+  border: 2px solid var(--glass-dark);
+  transition: 0.3s ease;
+}
+
+.log-table-wrapper::-webkit-scrollbar-thumb:hover,
+.event-list::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-light);
+}
+
+/* Firefox */
+
+.log-table-wrapper,
+.event-list {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--glass-dark);
+}
+
+
+
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1200px) {
+  .logs-layout {
+    flex-direction: column;
+    height: 65vh;
+
+  }
+
+  .event-panel {
+    width: 100%;
+    height: 315px;
+  }
+  .log-panel {
+    height: 65vh;
+    min-height: 65vh;   /* VERY IMPORTANT */
+  }
+
+
+}
+
+@media (max-width: 992px) {
+
+  .admin-layout {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    width: 90%;
+    top:25px;
+    height: 80px;
+    padding: 20px 30px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 1000;
+    display: flex;
+    border-radius: 25px;
+    left:5%;
+    overflow: visible;
+  }
+
+  .sidebar-logo {
+    height: 30px;
+    padding: 0px 0px;
+    margin-top: 20px;
+  }
+
+  .sidebar-toggle {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+
+  .sidebar-menu {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    padding: 25px;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: var(--radius-md);
+    background:var(--glass-black);
+  }
+
+  .sidebar-menu.active {
+    display: flex;
+  }
+
+  .sidebar-item {
+    width: 100%;
+    justify-content: center;
+  }
+
+   .sidebar-bottom {
+    display: block;
+  }
+
+  .admin-content {
+    padding-top: 120px;
+  }
+
+  .event-item {
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 768px) {
+
+ .log-toolbar {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch; /* keep width full */
+  }
+
+  .log-toolbar input,
+  .select-trigger {
+    height: 40px;
+    min-height: 40px;
+    max-height: 40px;
+    box-sizing: border-box;  /* VERY IMPORTANT */
+  }
+  .log-table {
+    font-size: 9px 
+  }
+
+  .log-table th,
+  .log-table td {
+    padding: 4px 6px;
+  }
+  
+}

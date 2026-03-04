@@ -1,0 +1,67 @@
+.auth-section{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:10vh 20px;
+}
+
+/* Card same glass style as contact-wrapper */
+.auth-card{
+  width:420px;
+  padding:50px 45px;
+  border-radius:var(--radius-md);
+  background:var(--glass-nav);
+  backdrop-filter:blur(25px);
+  box-shadow:var(--shadow-md);
+  text-align:center;
+}
+
+/* Logo */
+.auth-logo{
+  margin-bottom:25px;
+}
+
+.auth-logo img{
+  height:40px;
+}
+
+/* Heading spacing */
+.auth-card h3{
+  margin-bottom:35px;
+  font-size:var(--fs-body);
+}
+
+/* Reuse contact input style */
+.auth-card input{
+  width:100%;
+  padding:16px 18px;
+  border-radius:var(--radius-xs);
+  border:1px solid var(--glass-bg);
+  background:var(--glass-bg);
+  color:var(--light);
+  outline:none;
+  transition:0.3s ease;
+  font-size:var(--fs-normal);
+}
+
+.auth-card input:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 2px var(--glass-bg);
+}
+
+/* Error */
+.error-msg{
+  margin-top:15px;
+  color:var(--error);
+  font-size:var(--fs-normal);
+}
+
+/* Responsive */
+@media(max-width:768px){
+  .auth-card{
+    width:100%;
+    max-width:380px;
+    padding:40px 25px;
+  }
+}

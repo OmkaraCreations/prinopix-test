@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Panel | Prinopix</title>
+<meta name="theme-color" content="#EF5929">
+
+<link rel="icon" type="image/png" sizes="32x32" href="../img/Asset 1.png">
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/admin.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="mandala-bg"></div>
+<div class="particles" id="particles"></div>
+
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
+
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar">
+
+    <div class="sidebar-top">
+      <img src="../img/Logo.png" class="sidebar-logo">
+    </div>
+
+
+    <div class="sidebar-toggle" id="sidebarToggle">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <div class="sidebar-menu">
+      <div class="sidebar-item active" data-section="logs">
+        <i class="fa-solid fa-file-lines"></i>
+        <span>Logs</span>
+      </div>
+
+      <div class="sidebar-item" data-section="events">
+        <i class="fa-solid fa-image"></i>
+        <span>Events</span>
+      </div>
+
+      <div class="sidebar-item" data-section="settings">
+        <i class="fa-solid fa-gear"></i>
+        <span>Settings</span>
+      </div>
+
+      <div class="sidebar-bottom">
+        <button class="btn contact-btn" id="logoutBtn">Logout</button>
+      </div>
+    </div>
+
+    
+
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="admin-content">
+
+    <!-- LOGS -->
+    <section id="logsSection" class="admin-section active">
+      <h2>Logs</h2>
+      <div class="logs-layout">
+
+        <!-- EVENT PANEL -->
+        <div class="event-panel">
+
+          <div class="event-panel-header">
+            <input type="text" id="eventSearch" placeholder="Search Events">
+          </div>
+
+          <div class="event-list" id="eventList"></div>
+
+          <div class="event-panel-footer">
+            <button class="btn contact-btn" id="addLogEventBtn">+ Add Event</button>
+          </div>
+
+        </div>
+
+        <!-- LOG TABLE PANEL -->
+        <div class="log-panel">
+          
+          <div class="log-toolbar">
+            
+            <!-- LOG SOURCE FILTER -->
+            <div class="custom-select" id="logSourceSelect">
+              <div class="select-trigger">
+                <span id="selectedLogSource">All Sources</span>
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
+
+              <div class="select-options" id="logSourceOptions">
+                <div class="select-option" data-value="">All Sources</div>
+              </div>
+
+              <input type="hidden" id="logSourceFilter">
+            </div>
+           
+            <!-- LOG TYPE FILTER -->
+            <div class="custom-select" id="logTypeSelect">
+              <div class="select-trigger">
+                <span id="selectedLogType">All Types</span>
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
+
+              <div class="select-options">
+                <div class="select-option" data-value="">All Types</div>
+                <div class="select-option" data-value="info">Info</div>
+                <div class="select-option" data-value="warning">Warning</div>
+                <div class="select-option" data-value="error">Error</div>
+              </div>
+
+              <input type="hidden" id="logTypeFilter">
+            </div>
+
+            <input type="text" id="logSearch" placeholder="Search logs...">
+            <button class="btn" id="downloadLogsBtn">Download</button>
+            
+          </div>
+
+          <div class="log-table-wrapper">
+            <table class="log-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Source</th>
+                  <th>Log Type</th>
+                  <th>CorrelationId</th>
+                  <th>Message</th>
+                </tr>
+              </thead>
+              <tbody id="logTableBody"></tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- EVENTS -->
+    <section id="eventsSection" class="admin-section">
+      <h2>Event Storage</h2>
+
+      <button class="btn" id="addStorageEventBtn">Create Event</button>
+
+      <div class="admin-grid" id="storageEventsContainer"></div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section id="settingsSection" class="admin-section">
+      <h2>Settings</h2>
+      <p style="text-align:center; margin-top:40px;">Future configuration panel.</p>
+    </section>
+
+  </main>
+
+</div>
+
+<!-- LOADER -->
+<div id="adminLoader" class="admin-loader">
+  <div class="loader-wrapper">
+    <div class="loader-ring"></div>
+    <img src="../img/Asset 1.png" class="loader-logo">
+  </div>
+</div>
+
+
+<!-- ================= CUSTOM MODAL ================= -->
+<div id="customModal" class="custom-modal hidden">
+  <div class="custom-modal-content">
+
+    <h3 id="modalTitle">Modal Title</h3>
+
+    <div id="modalInputWrapper">
+      <input type="text" id="modalInput" placeholder="Enter value...">
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn" id="modalCancel">Cancel</button>
+      <button class="btn" id="modalConfirm">Confirm</button>
+    </div>
+
+  </div>
+</div>
+
+
+<script type="module" src="../js/admin.js"></script>
+
+</body>
+</html>
