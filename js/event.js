@@ -280,7 +280,7 @@ function downloadFromDrive(id) {
     showPopup("Download not available.");
     return;
   }
-  const link = `https://drive.google.com/uc?id=${id}&export=download`;
+  const link = `https://drive.usercontent.google.com/u/0/uc?id=${id}&export=download`;
   window.open(link, "_blank");
 }
 
@@ -365,12 +365,16 @@ window.closePopup = function() {
 // ==========================================
 // UPLOAD HANDLER
 // ==========================================
-uploadBtn.addEventListener("click", () => {
+/*uploadBtn.addEventListener("click", () => {
   if (isMobile()) {
     selfieInput.click();     // mobile camera
   } else {
     openDesktopCamera();     // desktop webcam
   }
+});*/
+
+uploadBtn.addEventListener("click", () => {
+  selfieInput.click();
 });
 
 selfieInput.addEventListener("change", async (e) => {
