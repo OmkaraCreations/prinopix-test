@@ -71,10 +71,41 @@ function l2normFloat32(arr) {
   return out;
 }
 
-function fileToImage(file) {
+/*function fileToImage(file) {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = URL.createObjectURL(file);
+  });
+}*/
+
+function fileToImage(file) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+
+      const maxSize = 900; // 👈 ideal for detection
+      let { width, height } = img;
+
+      if (width > maxSize || height > maxSize) {
+        const scale = Math.min(maxSize / width, maxSize / height);
+        width = width * scale;
+        height = height * scale;
+      }
+
+      const canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = height;
+
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, width, height);
+
+      const resizedImg = new Image();
+      resizedImg.onload = () => resolve(resizedImg);
+      resizedImg.src = canvas.toDataURL("image/jpeg", 0.95);
+    };
+
     img.onerror = reject;
     img.src = URL.createObjectURL(file);
   });
@@ -201,7 +232,7 @@ async function extractSelfieDescriptor(file) {
   const img = await fileToImage(file);
 
   const result = await faceapiRef
-    .detectSingleFace(img, new faceapiRef.SsdMobilenetv1Options({ minConfidence: 0.7 }))
+    .detectSingleFace(img, new faceapiRef.SsdMobilenetv1Options({ minConfidence: 0.4 }))
     .withFaceLandmarks()
     .withFaceDescriptor();
 
