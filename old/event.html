@@ -1,3 +1,430 @@
+/* =====================================================
+   EVENT GALLERY – ENTERPRISE DARK PRO
+===================================================== */
+
+:root{
+  /* Accent (subtle professional blue) */
+  --accent:#3b82f6;
+  --accent-hover:#2563eb;
+
+  /* Backgrounds */
+  --bg-main:#0b0f14;
+  --bg-surface:#11161c;
+  --bg-card:#161c23;
+
+  /* Text */
+  --text-main:#e5e7eb;
+  --text-muted:#9aa4b2;
+
+  /* Borders */
+  --border:#222a33;
+
+  --radius:12px;
+}
+
+/* =========================
+   BASE
+========================= */
+
+body{
+  margin:0;
+  background:var(--bg-main);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  color:var(--text-main);
+}
+
+/* =========================
+   HEADER (Centered Layout)
+========================= */
+
+.event-header{
+  position:sticky;
+  top:0;
+  z-index:100;
+
+  padding:20px 20px 16px 20px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  background:var(--bg-surface);
+  border-bottom:1px solid var(--border);
+  text-align:center;
+}
+
+/* Title wrapper */
+.event-title-wrapper{
+  width:100%;
+}
+
+/* Title */
+.event-title{
+  font-size:20px;
+  font-weight:600;
+  letter-spacing:.5px;
+  line-height:1.4;
+  word-break:break-word;   /* handles long titles */
+  margin-bottom:14px;
+}
+
+/* Buttons below title */
+.header-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.header-btn{
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--text-main);
+  padding:7px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+.header-btn:hover{
+  border-color:var(--accent);
+  color:var(--accent);
+}
+
+/* =========================
+   LOADER
+========================= */
+
+.loader{
+  display:none;
+  text-align:center;
+  margin-top:20px;
+  color:var(--text-muted);
+}
+
+.spinner{
+  width:36px;
+  height:36px;
+  border:3px solid var(--border);
+  border-top:3px solid var(--accent);
+  border-radius:50%;
+  margin:0 auto 14px;
+  animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg);}
+}
+
+.empty-state{
+  text-align:center;
+  margin-top:140px;
+  color:var(--text-muted);
+}
+
+/* =========================
+   GALLERY (Dynamic Columns)
+========================= */
+
+.gallery{
+  padding:24px;
+  display:grid;
+  gap:20px;
+  grid-template-columns:repeat(4, 1fr); /* default 4 */
+  transition:all .3s ease;
+}
+
+/* Column Modes */
+.gallery.cols-1{ grid-template-columns:repeat(1,1fr); }
+.gallery.cols-2{ grid-template-columns:repeat(2,1fr); }
+.gallery.cols-3{ grid-template-columns:repeat(3,1fr); }
+.gallery.cols-4{ grid-template-columns:repeat(4,1fr); }
+
+
+/* =========================
+   PHOTO CARD
+========================= */
+
+.photo-card{
+  position:relative;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  transition:.2s ease;
+}
+
+.photo-card:hover{
+  border-color:#2f3945;
+  transform:translateY(-3px);
+}
+
+.photo-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* =========================
+   DOWNLOAD OVERLAY (BOTTOM FULL WIDTH)
+========================= */
+.download-btn{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  padding:12px 0;
+  background:rgba(0,0,0,0.80);
+  /*background:linear-gradient(
+    to top,
+    rgba(0,0,0,0.85),
+    rgba(0,0,0,0.6),
+    rgba(0,0,0,0.0)
+  );*/
+  color:white;
+  border:none;
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.5px;
+  cursor:pointer;
+  text-align:center;
+  transition:.3s ease;
+}
+
+.download-btn:hover{
+  background:linear-gradient(
+    to top,
+    var(--accent),
+    rgba(59,130,246,0.7),
+    rgba(0,0,0,0)
+  );
+}
+
+
+/* =========================
+   FLOATING BUTTONS (Equal Size)
+========================= */
+.floating-btn{
+  position:fixed;
+  right:24px;
+  width:160px;
+  height:50px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:var(--accent);
+  border:none;
+  color:white;
+  font-size:14px;
+  font-weight:600;
+  border-radius:12px;
+  cursor:pointer;
+  transition:.2s ease;
+  box-shadow:0 8px 25px rgba(0,0,0,.4);
+}
+
+.floating-btn:hover{
+  background:var(--accent-hover);
+  transform:translateY(-3px);
+}
+
+/* Positioning */
+#floatingUploadBtn{
+  bottom:45px;
+}
+
+
+
+/* =========================
+   IMAGE MODAL (Professional Centered)
+========================= */
+
+.image-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.97);
+  display:none;
+  z-index:300;
+
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+.image-modal img{
+  max-width:90%;
+  max-height:90%;
+  object-fit:contain;
+  border-radius:12px;
+  box-shadow:0 30px 80px rgba(0,0,0,.8);
+  transition:transform .3s ease;
+  cursor:zoom-in;
+}
+
+/* Zoomed State */
+.image-modal.zoomed img{
+  transform:scale(2);
+  cursor:zoom-out;
+}
+
+/* Close Button */
+.close-modal{
+  position:absolute;
+  top:25px;
+  right:25px;
+  width:44px;
+  height:44px;
+  background:rgba(0,0,0,.6);
+  color:white;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  cursor:pointer;
+  backdrop-filter:blur(6px);
+  transition:.2s ease;
+  z-index:400;
+}
+
+.close-modal:hover{
+  background:var(--accent);
+}
+
+/* =========================
+   POPUP
+========================= */
+
+.popup-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:150;
+}
+
+.popup-box{
+  background:var(--bg-surface);
+  padding:28px;
+  border-radius:12px;
+  width:90%;
+  max-width:340px;
+  border:1px solid var(--border);
+  text-align:center;
+}
+
+.popup-box button{
+  margin-top:18px;
+  padding:8px 16px;
+  border-radius:8px;
+  border:none;
+  background:var(--accent);
+  color:white;
+  cursor:pointer;
+}
+
+.popup-box button:hover{
+  background:var(--accent-hover);
+}
+
+
+/* =========================
+   LaYOUT TOGGLE BUTTON
+========================= */
+.layout-btn{
+  bottom:80px; /* above selfie button */
+  background:#1f2937;
+}
+
+.layout-btn:hover{
+  background:#2b3542;
+}
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Event Face Match</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/event.css">
+</head>
+
+<body>
+
+<header class="event-header">
+
+  <div class="event-title-wrapper">
+    <div class="event-title" id="eventTitle">
+      Loading Event...
+    </div>
+  </div>
+
+  <div class="header-actions">
+    <button id="showAllBtn" class="header-btn">
+      View All
+    </button>
+
+    <button id="layoutToggleBtn" class="header-btn">
+      Rearrange
+    </button>
+  </div>
+
+  <div id="loader" class="loader">
+    <div class="spinner"></div>
+    <span id="loaderText">Loading Event Photos...</span>
+  </div>
+
+</header>
+
+
+
+<div id="results" class="gallery"></div>
+
+<button id="floatingUploadBtn" class="floating-btn">
+  📸 Match Selfie
+</button>
+
+
+<input type="file" id="selfieFile" accept="image/*" hidden>
+
+<!-- Image Modal -->
+<div id="imageModal" class="image-modal">
+  <span class="close-modal" id="closeModal">&times;</span>
+  <img id="modalImage">
+</div>
+
+<!-- Popup -->
+<div id="popupOverlay" class="popup-overlay">
+  <div class="popup-box">
+    <div id="popupMessage"></div>
+    <button onclick="closePopup()">OK</button>
+  </div>
+</div>
+
+<script type="module" src="js/event.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
 // =====================================================
 // EVENT FACE MATCH - FULL MERGED VERSION
 // =====================================================
@@ -23,10 +450,8 @@ const loader = document.getElementById("loader");
 const loaderText = document.getElementById("loaderText");
 const results = document.getElementById("results");
 const uploadBtn = document.getElementById("floatingUploadBtn");
+const selfieInput = document.getElementById("selfieFile");
 const showAllBtn = document.getElementById("showAllBtn");
-
-const cameraInput = document.getElementById("cameraInput");
-const galleryInput = document.getElementById("galleryInput");
 
 const modal = document.getElementById("imageModal");
 const modalImg = document.getElementById("modalImage");
@@ -201,7 +626,7 @@ async function extractSelfieDescriptor(file) {
   const img = await fileToImage(file);
 
   const result = await faceapiRef
-    .detectSingleFace(img, new faceapiRef.SsdMobilenetv1Options({ minConfidence: 0.7 }))
+    .detectSingleFace(img, new faceapiRef.SsdMobilenetv1Options({ minConfidence: 0.5 }))
     .withFaceLandmarks()
     .withFaceDescriptor();
 
@@ -367,13 +792,20 @@ window.closePopup = function() {
 // ==========================================
 // UPLOAD HANDLER
 // ==========================================
+/*uploadBtn.addEventListener("click", () => {
+  if (isMobile()) {
+    selfieInput.click();     // mobile camera
+  } else {
+    openDesktopCamera();     // desktop webcam
+  }
+});*/
+
 uploadBtn.addEventListener("click", () => {
-  showUploadChoice();
+  selfieInput.click();
 });
 
-
-
-async function handleFileSelection(file) {
+selfieInput.addEventListener("change", async (e) => {
+  const file = e.target.files[0];
   if (!file) return;
 
   try {
@@ -395,21 +827,10 @@ async function handleFileSelection(file) {
   } catch (err) {
     hideLoader();
     showPopup("Face matching failed.");
+  } finally {
+    selfieInput.value = "";
   }
-}
-
-// Camera input
-cameraInput.addEventListener("change", (e) => {
-  const file = e.target.files[0];
-  handleFileSelection(file);
-  cameraInput.value = "";
-});
-
-// Gallery input
-galleryInput.addEventListener("change", (e) => {
-  const file = e.target.files[0];
-  handleFileSelection(file);
-  galleryInput.value = "";
+  
 });
 
 
@@ -428,7 +849,7 @@ function isMobile() {
 // ==========================================
 async function openDesktopCamera() {
   try{
-    const stream = await navigator.mediaDevices.getUserMedia({video: {width: { ideal: 1080 },height: { ideal: 1080 },facingMode: "user"}});
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
 
     const modal = document.getElementById("imageModal");
     const img = document.getElementById("modalImage");
@@ -478,8 +899,7 @@ async function openDesktopCamera() {
 
         const matches = matchSelfieToMaster(descriptor);
         showMatches(matches);
-
-      }, "image/jpeg", 0.95); // 95% quality
+      });
     };
   }catch (err) {
     showPopup("Camera access denied or not available.");
@@ -493,16 +913,16 @@ async function openDesktopCamera() {
 // ==========================================
 // SHOW CAMERA
 // ==========================================
-function showUploadChoice() {
+/*function showCameraChoice() {
   const popup = document.getElementById("popupOverlay");
   const box = document.querySelector(".popup-box");
 
   box.innerHTML = `
-    <div style="font-size:16px;margin-bottom:20px;font-weight:600;">
+    <div style="font-size:16px;margin-bottom:20px;">
       Choose Option
     </div>
 
-    <button id="takePhotoBtn" style="width:100%;margin-bottom:12px;">
+    <button id="takePhotoBtn" style="width:100%;margin-bottom:10px;">
       📷 Take Selfie
     </button>
 
@@ -515,21 +935,14 @@ function showUploadChoice() {
 
   document.getElementById("takePhotoBtn").onclick = () => {
     popup.style.display = "none";
-
-    if (isMobile()) {
-      cameraInput.click(); // mobile camera
-    } else {
-      openDesktopCamera(); // desktop webcam
-    }
+    selfieInput.click();   // ✅ FIXED
   };
 
   document.getElementById("uploadPhotoBtn").onclick = () => {
     popup.style.display = "none";
-    galleryInput.click();
+    selfieInput.click();   // same input works
   };
-}
-
-
+}*/
 
 // ==========================================
 // MODAL ZOOM (Desktop Click + Mobile Pinch)
