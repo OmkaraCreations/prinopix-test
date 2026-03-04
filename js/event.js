@@ -80,7 +80,23 @@ function l2normFloat32(arr) {
   });
 }*/
 
+
 function fileToImage(file) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+
+    img.onload = () => {
+      URL.revokeObjectURL(img.src); // free memory
+      resolve(img);
+    };
+
+    img.onerror = reject;
+
+    img.src = URL.createObjectURL(file);
+  });
+}
+
+/*function fileToImage(file) {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = () => {
@@ -109,7 +125,7 @@ function fileToImage(file) {
     img.onerror = reject;
     img.src = URL.createObjectURL(file);
   });
-}
+}*/
 
 function decompressDescriptor(int8arr) {
   const out = new Float32Array(128);
@@ -230,7 +246,9 @@ async function loadMasterBinFromUrl(binUrl) {
 async function extractSelfieDescriptor(file) {
   await initFaceModels();
   const img = await fileToImage(file);
-
+  
+  console.log("Image size:", img.width, img.height);
+  
   const result = await faceapiRef
     .detectSingleFace(img, new faceapiRef.SsdMobilenetv1Options({ minConfidence: 0.4 }))
     .withFaceLandmarks()
@@ -514,6 +532,7 @@ async function openDesktopCamera() {
     };
   }catch (err) {
     showPopup("Camera access denied or not available.");
+    console.log(err.message);
   }
 }
 
