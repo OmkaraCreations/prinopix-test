@@ -494,41 +494,28 @@ async function openDesktopCamera() {
 // SHOW CAMERA
 // ==========================================
 function showUploadChoice() {
-  const popup = document.getElementById("popupOverlay");
-  const box = document.querySelector(".popup-box");
-
-  box.innerHTML = `
-    <div style="font-size:16px;margin-bottom:20px;font-weight:600;">
-      Choose Option
-    </div>
-
-    <button id="takePhotoBtn" style="width:100%;margin-bottom:12px;">
-      📷 Take Selfie
-    </button>
-
-    <button id="uploadPhotoBtn" style="width:100%;">
-      🖼 Upload From Gallery
-    </button>
-  `;
-
+  const popup = document.getElementById("uploadOverlay");
   popup.style.display = "flex";
-
-  document.getElementById("takePhotoBtn").onclick = () => {
-    popup.style.display = "none";
-
-    if (isMobile()) {
-      cameraInput.click(); // mobile camera
-    } else {
-      openDesktopCamera(); // desktop webcam
-    }
-  };
-
-  document.getElementById("uploadPhotoBtn").onclick = () => {
-    popup.style.display = "none";
-    galleryInput.click();
-  };
 }
 
+function closeUploadPopup() {
+  document.getElementById("uploadOverlay").style.display = "none";
+}
+
+document.getElementById("takePhotoBtn").onclick = () => {
+  closeUploadPopup();
+
+  if (isMobile()) {
+    cameraInput.click();
+  } else {
+    openDesktopCamera();
+  }
+};
+
+document.getElementById("uploadPhotoBtn").onclick = () => {
+  closeUploadPopup();
+  galleryInput.click();
+};
 
 
 // ==========================================
