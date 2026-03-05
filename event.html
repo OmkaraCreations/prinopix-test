@@ -20,13 +20,15 @@
   </div>
 
   <div class="header-actions">
-    <button id="showAllBtn" class="header-btn">
-      View All
-    </button>
 
     <button id="layoutToggleBtn" class="header-btn">
       Rearrange
     </button>
+
+    <button id="showAllBtn" class="header-btn">
+      View All
+    </button>
+    
   </div>
 
   <div id="loader" class="loader">
@@ -66,16 +68,23 @@
 <!-- Upload Choice Modal -->
 <div id="uploadOverlay" class="popup-overlay" style="display:none;">
   <div class="popup-box">
-    <div style="font-size:16px;margin-bottom:20px;font-weight:600;">
-      Choose Option
-    </div>
+    <h4>
+      Instructions
+    </h4>
+    <ul>
+      <li>💡 Ensure good lighting and a centered face.</li>
+      <li>📸 Upload a clear, high-quality photo.</li>
+      <li>⚠️ Low-quality photos may fail detection.</li>
+      <li>🧑 Avoid photos with multiple people.</li>
+      <li>⏳ First load may take a few seconds.</li>
+    </ul>
 
-    <button id="takePhotoBtn" style="width:100%;margin-bottom:12px;">
+    <button id="takePhotoBtn" class="option-btn">
       📷 Take Selfie
     </button>
 
-    <button id="uploadPhotoBtn" style="width:100%;">
-      🖼 Upload From Gallery
+    <button id="uploadPhotoBtn" class="option-btn">
+      🖼️ Upload From Gallery
     </button>
 
     <button onclick="closeUploadPopup()" style="margin-top:15px;">
